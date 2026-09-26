@@ -1,0 +1,53 @@
+data:
+  ticker: AAPL
+  start: "2015-01-01"
+  end: null
+  interval: "1d"
+  date_column: Date
+  target: Close
+  features:
+    - Close
+    - return_1
+    - log_return_1
+    - sma_5
+    - sma_20
+    - ema_12
+    - ema_26
+    - macd
+    - macd_signal
+    - rolling_vol_20
+    - bollinger_z_20
+    - rsi_14
+    - atr_14
+    - volume_z_20
+    - price_to_sma_20
+    - range_fraction
+    - dow_sin
+    - dow_cos
+  train_ratio: 0.70
+  val_ratio: 0.15
+
+model:
+  sequence_length: 60
+  hidden_size: 96
+  num_layers: 2
+  dropout: 0.25
+
+train:
+  batch_size: 64
+  epochs: 80
+  learning_rate: 0.0007
+  weight_decay: 0.0002
+  patience: 12
+  lr_patience: 4
+  lr_factor: 0.5
+  min_learning_rate: 0.000001
+  gradient_clip_norm: 1.0
+  seed: 42
+  device: auto
+
+forecast:
+  horizon: 20
+
+output:
+  artifact_dir: artifacts
